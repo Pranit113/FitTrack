@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FitTrack</string>
+    <string name="track_tab">Track</string>
+    <string name="history_tab">History</string>
+    <string name="stats_tab">Stats</string>
+    <string name="settings_tab">Settings</string>
+    <string name="start_tracking">Start Tracking</string>
+    <string name="pause_tracking">Pause</string>
+    <string name="resume_tracking">Resume</string>
+    <string name="finish_tracking">Finish</string>
+</resources>
