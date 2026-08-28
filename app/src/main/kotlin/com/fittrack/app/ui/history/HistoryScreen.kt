@@ -5,7 +5,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ChevronRight
+import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -49,7 +49,7 @@ fun HistoryScreen(onActivityClick: (Long) -> Unit, viewModel: HistoryViewModel =
                                     Text(text = "${activity.type} - ${activity.startTime}")
                                     Text(text = "Dist: ${activity.distanceMeters}m | Dur: ${activity.durationSeconds}s")
                                 }
-                                Icon(Icons.Filled.ChevronRight, contentDescription = null)
+                                Icon(Icons.Filled.KeyboardArrowRight, contentDescription = null)
                             }
                         }
                     }

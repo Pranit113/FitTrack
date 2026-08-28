@@ -2,9 +2,9 @@ package com.fittrack.app.ui.navigation
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.BarChart
-import androidx.compose.material.icons.filled.DirectionsRun
-import androidx.compose.material.icons.filled.History
+import androidx.compose.material.icons.filled.List
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
@@ -33,9 +33,9 @@ fun FitTrackApp() {
     val currentDestination = navBackStackEntry?.destination
 
     val items = listOf(
-        NavigationItem("Track", "track", Icons.Filled.DirectionsRun),
-        NavigationItem("History", "history", Icons.Filled.History),
-        NavigationItem("Stats", "stats", Icons.Filled.BarChart),
+        NavigationItem("Track", "track", Icons.Filled.PlayArrow),
+        NavigationItem("History", "history", Icons.Filled.List),
+        NavigationItem("Stats", "stats", Icons.Filled.Person),
         NavigationItem("Settings", "settings", Icons.Filled.Settings)
     )
 
