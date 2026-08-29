@@ -1,4 +1,4 @@
-package com.fittrack.app.ui.history
+﻿package com.fittrack.app.ui.history
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -6,8 +6,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
-import androidx.compose.material.icons.filled.DirectionsRun
-import androidx.compose.material.icons.filled.DirectionsWalk
 import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -38,7 +36,7 @@ fun HistoryScreen(
     if (activities.isEmpty()) {
         Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                Text("??", fontSize = 64.sp)
+                Text("🏃", fontSize = 64.sp)
                 Spacer(Modifier.height(16.dp))
                 Text("No activities yet", style = MaterialTheme.typography.titleLarge,
                     fontWeight = FontWeight.Bold)
@@ -64,19 +62,15 @@ fun HistoryScreen(
         }
     }
 
-    // Delete confirmation dialog
     activityToDelete?.let { act ->
         AlertDialog(
             onDismissRequest = { activityToDelete = null },
             title = { Text("Delete Activity?") },
-            text = { Text("This will permanently delete \"${act.title}\". This cannot be undone.") },
+            text = { Text("This will permanently delete this activity. This cannot be undone.") },
             confirmButton = {
-                TextButton(
-                    onClick = {
-                        viewModel.deleteActivity(act)
-                        activityToDelete = null
-                    }
-                ) { Text("Delete", color = MaterialTheme.colorScheme.error) }
+                TextButton(onClick = { viewModel.deleteActivity(act); activityToDelete = null }) {
+                    Text("Delete", color = MaterialTheme.colorScheme.error)
+                }
             },
             dismissButton = {
                 TextButton(onClick = { activityToDelete = null }) { Text("Cancel") }
@@ -92,7 +86,7 @@ private fun ActivityCard(
     onClick: () -> Unit,
     onDelete: () -> Unit
 ) {
-    val dateStr = SimpleDateFormat("EEE, d MMM � HH:mm", Locale.getDefault())
+    val dateStr = SimpleDateFormat("EEE, d MMM  HH:mm", Locale.getDefault())
         .format(Date(activity.startTime))
 
     Card(
@@ -103,7 +97,6 @@ private fun ActivityCard(
             modifier = Modifier.padding(16.dp).fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            // Type icon
             Surface(
                 color = when (activity.type) {
                     ActivityType.RUN  -> Color(0xFF4CAF50)
@@ -120,14 +113,13 @@ private fun ActivityCard(
 
             Spacer(Modifier.width(14.dp))
 
-            // Info column
             Column(modifier = Modifier.weight(1f)) {
                 Text(activity.title, style = MaterialTheme.typography.titleSmall,
                     fontWeight = FontWeight.Bold)
                 Text(dateStr, style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant)
                 Spacer(Modifier.height(6.dp))
-                Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     StatChip(LocationUtils.formatDistance(activity.distanceMeters, unitSystem))
                     StatChip(LocationUtils.formatDuration(activity.durationSeconds))
                     if (activity.avgPaceSecPerKm > 0)
@@ -135,7 +127,6 @@ private fun ActivityCard(
                 }
             }
 
-            // Actions
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 IconButton(onClick = onDelete, modifier = Modifier.size(36.dp)) {
                     Icon(Icons.Filled.Delete, contentDescription = "Delete",
